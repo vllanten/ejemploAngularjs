@@ -1,0 +1,52 @@
+<html>
+
+<head>
+
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body ng-app="appExemplo">
+
+    
+    <div class="container" ng-controller="indexController">
+   
+        <h1>Ejemplo de angularJS </h1>
+   
+        <div class="card">
+            <p>
+                Universo:
+            </p>
+            <div class="en-columnas">
+                <ul>
+                    <li ng-repeat="u in elementos.universo  track by $index"> {{u}}</li>
+                </ul>
+                <span ng-show="sinUniverso" 
+                    class="badge badge-warning"> No hay elementos</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <p>
+                Buscados:
+            </p>
+            <div class="en-columnas">
+                <ul>
+                    <li ng-repeat="u in elementos.buscados track by $index"> {{u}}</li>
+                </ul>
+                <span ng-show="sinBuscados" 
+                    class="badge badge-warning"> No hay elementos</span>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
