@@ -1,0 +1,31 @@
+Temario de AngularJS* 1.x y utilidades relacionadas+
+* Directivas
+* Recursos
+* Http 
+*
+*
+*
++ Coffee script
++ inyección de dependencias
+
+Comandos de utilidad* - docker
+
+* docker compose -f archivo.yml
+
+
+Comandos de utilidad* y notas(*) - AngularJS 1.x + bower + docker
+
+* bower init
+* bower install angular@1.6 --save  => --save es para almacenar los cambios en bower.json, el carácter ^ indica que es actualizable
+(*) crear index.html
+* bower install => usualmente basta con descargar sólo el archivo bower.json e instalar los componentes indicados en vez de descargar el paquete con los componentes ya listos
+(*) crear docker-composer.yml => descripción de imágenes y puerto a usar
+* bower install jquery --save => necesario para bootstrap
+* bower install angular-resource --save => necesario de angularJS
+(*) añadir los scripts de jquery, bootstrap, angular, angular-resource y el .js de la aplicación al final de index.html 
+
+Comandos de utilidad* y notas(*) - Coffee Script
+
+* cofee -wc archivo.coffee => compilar archivo.coffee y generar archivo.js
+(*) idealmente los scripts deben usarse/guardarse como recursos para ser reutilizados
+(*) usar .then luego de .get
