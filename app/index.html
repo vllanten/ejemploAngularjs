@@ -1,53 +1,122 @@
 <html>
 
-    <head>
-        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="styles.css">
-    </head>
+<head>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
 
-    <body ng-app="appExemplo">
+<body ng-app="appExemplo">
 
-        <div class="container" ng-controller="indexController">
-            <h1>Ejemplo de angularJS </h1>
-            <div class="card">
-                <h3>
-                    Universo:
-                </h3>
-                <div class="en-columnas">
-                    <ul>
-                        <li ng-repeat="u in elementos.universo  track by $index"> {{u}}</li>
-                    </ul>
-                    <span ng-show="sinUniverso" class="badge badge-warning"> No hay elementos</span>
-                </div>
-            </div>
-            <div class="card">
-                <h3>
-                    Buscados:
-                </h3>
-                <div class="en-columnas">
-                    <ul>
-                        <li ng-repeat="u in elementos.buscados track by $index"> {{u}}</li>
-                    </ul>
-                    <span ng-show="sinBuscados" class="badge badge-warning"> No hay elementos</span>
-                </div>
-            </div>
-            <div class="card">
-                <h3>Directivas</h3>
-                <p>
-                    Listado de afps:
-                    <listado-afp></listado-afp>
-                </p>
-                <p>
-                    Selector de afps:
-                    <selector-afp></selector-afp>
-                </p>
+    <div class="container" ng-controller="indexController">
+
+        {{afps}}
+        <h1>Ejemplo de angularJS </h1>
+        <div class="card">
+            <h3>
+                Universo:
+            </h3>
+            <div class="en-columnas">
+                <ul>
+                    <li ng-repeat="u in elementos.universo  track by $index"> {{u}}</li>
+                </ul>
+                <span ng-show="sinUniverso" class="badge badge-warning"> No hay elementos</span>
             </div>
         </div>
+        <div class="card">
+            <h3>
+                Buscados:
+            </h3>
+            <div class="en-columnas">
+                <ul>
+                    <li ng-repeat="u in elementos.buscados track by $index"> {{u}}</li>
+                </ul>
+                <span ng-show="sinBuscados" class="badge badge-warning"> No hay elementos</span>
+            </div>
+        </div>
+        <div class="card">
+            <h3>Directivas</h3>
+            <p>
+                Listado de afps:
+                <listado-afp></listado-afp>
+            </p>
+            <p>
+                Selector de afps:
+                <selector-afp></selector-afp>
+            </p>
+        </div>
+    </div>
 
-        <script src="bower_components/jquery/dist/jquery.min.js"></script>
-        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="bower_components/angular/angular.min.js"></script>
-        <script src="bower_components/angular-resource/angular-resource.min.js"></script>
-        <script src="app.js"></script>
-    </body>
+    <div class="container" ng-controller="restController">
+
+        <div class="card">
+            <h3>usando un servicio rest</h3>
+
+            <form name="form" >
+
+            <div class="search">
+                <span class="fa fa-search"></span>
+                <input placeholder="Buscar" ng-model="searchText" type='text'>
+            </div>
+
+            <table class="table">
+                <tr>
+                    <th>name</th>
+                    <th>username</th>
+                    <th>email</th>
+                    <th>phone</th>
+                </tr>
+                <tr ng-repeat="(index, usuario) in usuarios  | filter:searchFilter">
+                    <td>{{usuario.name}}</td>
+                    <td>{{usuario.username}}</td>
+                    <td>{{usuario.email}}</td>
+                    <td>{{usuario.phone}}</td>
+                    <td>
+                        <button class="btn btn-danger btn-sm" 
+                            ng-init="disableEliminar[index] = false"
+                            ng-click="eliminar(usuario, index)"
+                            ng-disabled="disableEliminar[index]"
+                            > Elimiar </button>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td>
+                        <input required ng-required=true type="text" name="name" id="" ng-model="newUser.name"> 
+                        <span ng-show="!form.name.$valid" class="badge badge-danger"> campo requerido</span>
+                    </td>
+                    <td>
+                        <input required ng-required=true type="text" name="username" id="" ng-model="newUser.username"> 
+                        <span ng-show="!form.username.$valid" class="badge badge-danger"> campo requerido</span>
+                    </td>
+                    <td>
+                        <input required ng-required=true type="text" name="email" id="" ng-model="newUser.email"> 
+                        <span ng-show="!form.email.$valid" class="badge badge-danger"> campo requerido</span>
+                    </td>
+                    <td>
+                        <input required ng-required=true type="text" name="phone" id="" ng-model="newUser.phone"> 
+                        <span ng-show="!form.phone.$valid" class="badge badge-danger"> campo requerido</span>
+                    </td>
+                    <td> 
+                        <button class="btn btn-success btn-sm" 
+                            ng-disabled="!form.$valid  || enejecucion" ng-click="agregar()"> Nuevo </button>
+                    </td>
+                    
+                </tr>
+            </table>
+            </form>
+        </div>
+
+    </div>
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.min.js"></script>
+
+    <script src="js/config.js"></script>
+    <script src="js/resources.js"></script>
+    <script src="js/directivas.js"></script>
+    <script src="js/controllers.js"></script>
+</body>
+
 </html>
